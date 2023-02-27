@@ -6,7 +6,6 @@ let nos = ["0","1","2","3","4","5","6","7","8","9"]
 let speco = ["!","@","#","$","%","&","*","_","-"]
 let key1 =""
 let key2 =""
-// let randomIndex = Math.floor(Math.random()*store.length) 
 let capflag = 1
 let smalflag = 1
 let nosflag = 1
@@ -30,10 +29,7 @@ function getspecial(){
     return y 
 
 }
-// document.getElementById("generate-btn").addEventListener("click",function(){
-//     generatePassword()
-// }
-// )
+
 function capflagch(){
     if(capflag === 1){
         capflag = 0
