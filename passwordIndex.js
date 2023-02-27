@@ -7,7 +7,6 @@ let speco = ["!","@","#","$","%","&","*","_","-"]
 let key1 =""
 let key2 =""
 // let randomIndex = Math.floor(Math.random()*store.length) 
-let random
 let capflag = 1
 let smalflag = 1
 let nosflag = 1
@@ -74,6 +73,12 @@ function specoflagch(){
 function generatePassword(){
     key1 =""
     key2 =""
+    if(capflag === 0 && smalflag === 0 && nosflag === 0 && specoflag === 0)
+    {
+        document.getElementById("o1").textContent = key1
+        document.getElementById("o2").textContent = key2
+        return;
+    }
     let size = document.getElementById("length")
     let x = 0
     let y = 0
