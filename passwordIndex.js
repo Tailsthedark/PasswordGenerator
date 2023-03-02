@@ -73,6 +73,7 @@ function generatePassword(){
     {
         document.getElementById("o1").textContent = key1
         document.getElementById("o2").textContent = key2
+        
         return;
     }
     let size = document.getElementById("length")
