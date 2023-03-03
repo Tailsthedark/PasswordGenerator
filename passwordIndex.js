@@ -4,8 +4,7 @@ let store = ["A", "B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","
 "*","_","-"]//array from which we will pull the characters we will use to generate the passwords
 let key ="" //variable in charge of storing the password
 let randomIndex = Math.floor(Math.random()*store.length) 
-flags = [0,0,0,0]
-let selected = 4
+
 function getuppercase(){
     return Math.floor(Math.random() * 26)//0-25 //generates an index containing an uppercase character
 }
@@ -24,63 +23,83 @@ function getspecial(){
 }
 
 document.getElementById("generate-btn").addEventListener("click",function(){//listens for clicking of generate password button to generate passwords to the user's  specifications 
-                                                                
-    if (document.getElementById("uppercase").checked === false && document.getElementById("lowercase").checked === false &&
-       document.getElementById("numbers").checked === false && document.getElementById("special").checked === false)//generates default password when none of the checkboxes have been checked
-       {
-        generateDefault(key,"o1")
-        generateDefault(key,"o2")
-       }
-    if (document.getElementById("uppercase").checked === true) //exclude uppercase
+        let selected = 0//a variable that keeps track of how many checkboxes have been selected
+    for (let i = 0; i < document.querySelectorAll(".checkboxes").length; i++)//goes through every checkbox if .checked is true add 1 to selected
     {
-        noUppercase(key,"o1")
-        noUppercase(key,"o2")
+        if (document.querySelectorAll(".checkboxes")[i].checked === true)
+        {
+            selected += 1
+        }
     }
-    if (document.getElementById("lowercase").checked === true)//exclude lowercase
+    if (selected < 3)//if less than 3 checkboxews have been selected generate passwords based on the specifications
     {
-        noLowercase(key,"o1")
-        noLowercase(key,"o2")
-    }
-    if (document.getElementById("numbers").checked === true)//exclude numbers
-    {
-        noNumbers(key,"o1")
-        noNumbers(key,"o2")
-    }
-    if (document.getElementById("special").checked === true)//exclude special characters
-    {
-        noSpecial(key,"o1")
-        noSpecial(key,"o2")
-    }
-    if (document.getElementById("uppercase").checked === true && document.getElementById("numbers").checked === true)//generate passwords excluding uppercase and numbers
-    {
-        noUpperAndNumber(key,"o1")
-        noUpperAndNumber(key,"o2")
-    }
-    if (document.getElementById("lowercase").checked === true && document.getElementById("numbers").checked === true)//generate passwords excluding lowercase and numbers
-    {
-        noLowerAndNumber(key,"o1")
-        noLowerAndNumber(key,"o2")
-    }
-    if (document.getElementById("numbers").checked === true && document.getElementById("special").checked === true)//generate passwords excluding numbers and special characters
-    {
-        noNumberAndSpecial(key,"o1")
-        noNumberAndSpecial(key,"o2")
-    }
-    if (document.getElementById("uppercase").checked === true && document.getElementById("lowercase").checked === true)//generate passwords excluding uppercase and lowercase characters
-    {
-        noUpperAndLower(key,"o1")
-        noUpperAndLower(key,"o2")
-    }
-    if (document.getElementById("uppercase").checked === true && document.getElementById("special").checked === true)//generate passwords excluding uppercase and special characters
-    {
-        noUpperAndSpecial(key,"o1")
-        noUpperAndSpecial(key,"o2")
-    }
-    if (document.getElementById("lowercase").checked === true && document.getElementById("special").checked === true)//generate passwords excluding lowercase and special characters
-    {
-        noLowerAndSpecial(key,"o1")
-        noLowerAndSpecial(key,"o2")
-    }
+        if (document.getElementById("uppercase").checked === false && document.getElementById("lowercase").checked === false &&
+        document.getElementById("numbers").checked === false && document.getElementById("special").checked === false)//generates default password when none of the checkboxes have been checked
+        {
+            generateDefault(key,"o1")
+            generateDefault(key,"o2")
+        }
+        else if (document.getElementById("uppercase").checked === true) //exclude uppercase
+        {
+            noUppercase(key,"o1")
+            noUppercase(key,"o2")
+        }
+        else if (document.getElementById("lowercase").checked === true)//exclude lowercase
+        {
+            noLowercase(key,"o1")
+            noLowercase(key,"o2")
+        }
+        else if (document.getElementById("numbers").checked === true)//exclude numbers
+        {
+            noNumbers(key,"o1")
+            noNumbers(key,"o2")
+        }
+        else if (document.getElementById("special").checked === true)//exclude special characters
+        {
+            noSpecial(key,"o1")
+            noSpecial(key,"o2")
+        }
+        else if (document.getElementById("uppercase").checked === true && document.getElementById("numbers").checked === true)//generate passwords excluding uppercase and numbers
+        {
+            noUpperAndNumber(key,"o1")
+            noUpperAndNumber(key,"o2")
+        }
+        else if (document.getElementById("lowercase").checked === true && document.getElementById("numbers").checked === true)//generate passwords excluding lowercase and numbers
+        {
+            noLowerAndNumber(key,"o1")
+            noLowerAndNumber(key,"o2")
+        }
+        else if (document.getElementById("numbers").checked === true && document.getElementById("special").checked === true)//generate passwords excluding numbers and special characters
+        {
+            noNumberAndSpecial(key,"o1")
+            noNumberAndSpecial(key,"o2")
+        }
+        else if (document.getElementById("uppercase").checked === true && document.getElementById("lowercase").checked === true)//generate passwords excluding uppercase and lowercase characters
+        {
+            noUpperAndLower(key,"o1")
+            noUpperAndLower(key,"o2")
+        }
+        else if (document.getElementById("uppercase").checked === true && document.getElementById("special").checked === true)//generate passwords excluding uppercase and special characters
+        {
+            noUpperAndSpecial(key,"o1")
+            noUpperAndSpecial(key,"o2")
+        }
+        else if (document.getElementById("lowercase").checked === true && document.getElementById("special").checked === true)//generate passwords excluding lowercase and special characters
+        {
+            noLowerAndSpecial(key,"o1")
+            noLowerAndSpecial(key,"o2")
+        }
+   }
+   else if( selected > 2)//if more than two checkboxes have been selected deselect all checkboxes and let user know of the limitations
+   {
+    alert("Cannot exclude more than two types of characters")
+    document.getElementById("uppercase").checked = false
+    document.getElementById("lowercase").checked = false
+    document.getElementById("numbers").checked = false
+    document.getElementById("special").checked = false
+    document.getElementById("o1").textContent = ""
+    document.getElementById("o2").textContent = ""
+   }
 })
 
 function generateDefault(key, id){//generates default password which contains at least one of each type of character
