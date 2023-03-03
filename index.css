@@ -12,16 +12,16 @@ body{
     font-family: tech;
 }
 .header{
-    color:blue;
+    color: #3E6D9C;
     margin: 60px 50px 30px 50px;
     }
     #h2{
-        color:white;
+        color:#E9F8F9;
     }
     
 #input{
     margin: 0 50px;
-    color: blue;
+    color: #3E6D9C;
 }
 #length{
     width: 155px;
@@ -31,12 +31,12 @@ body{
     margin: 0 50px;
 }
 #exclude{
-    color: blue;
+    color: #3E6D9C;
     display: flex;
     margin: 0 50px;
 }
 #exclude2{
-    color: blue;
+    color: #3E6D9C;
     display: flex;
     margin: 0 50px;
 }
@@ -45,7 +45,7 @@ body{
     border-radius: 5px;
     color: #FFFFFF;
     border: none;
-    background:blue;
+    background: #3E6D9C;
     font-family: tech;
     margin: 20px 50px;
 }
@@ -65,16 +65,18 @@ body{
 
 #o1, #o2{
     background: white;
-    color: blue;
+    color: #3E6D9C;
     border-radius:5px ;
     border: none ;
     height: 25px;
-    width:150px;
+    width: 190px;
+    font-weight: bold;
 }
 .me{
     color: white;
     margin: 0 50px;
 }
-/**{
-    outline: solid 1px yellow;
-}*/
+a{
+ text-decoration: none;
+ color: #3E6D9C;
+}

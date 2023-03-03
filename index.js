@@ -24,17 +24,17 @@ function getspecial(){
 
 document.getElementById("generate-btn").addEventListener("click",function(){//listens for clicking of generate password button to generate passwords to the user's  specifications 
         let selected = 0//a variable that keeps track of how many checkboxes have been selected
-        if ( document.getElementById("length").value>14)
+        if ( document.getElementById("length").value>20)
         {
-            alert("Maximum length of password is 14")
+            alert("Maximum length of password is 20")
             document.getElementById("o1").textContent = ""
             document.getElementById("o2").textContent = ""
             return 0
             
         }
-        if( document.getElementById("length").value < 8)
+        if( document.getElementById("length").value < 6)
         {
-            alert("Minimum length of password is 8")
+            alert("Minimum length of password is 6")
             document.getElementById("o1").textContent = ""
             document.getElementById("o2").textContent = ""
             return 0
