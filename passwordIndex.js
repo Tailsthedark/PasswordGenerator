@@ -4,8 +4,8 @@ let store = ["A", "B", "C","D","E","F","G","H","I","J","K","L","M","N","O","P","
 "*","_","-"]//array from which we will pull the characters we will use to generate the passwords
 let key ="" //variable in charge of storing the password
 let randomIndex = Math.floor(Math.random()*store.length) 
-let flags = [0,0,0,0]//uppercase index0 ,lowercase index 1,numbers index 2,special index 3. array of flags that will be used to monitor checkbox states
-
+flags = [0,0,0,0]
+let selected = 4
 function getuppercase(){
     return Math.floor(Math.random() * 26)//0-25 //generates an index containing an uppercase character
 }
@@ -23,105 +23,63 @@ function getspecial(){
 
 }
 
-document.getElementById("generate-btn").addEventListener("click",function(){//listens for clicking of generate password button to generate passwords to the user's 
-    if (flags[0] === 0 && flags[1] === 0 && flags[2] === 0 && flags[3] === 0)//specifications
-    {
+document.getElementById("generate-btn").addEventListener("click",function(){//listens for clicking of generate password button to generate passwords to the user's  specifications 
+                                                                
+    if (document.getElementById("uppercase").checked === false && document.getElementById("lowercase").checked === false &&
+       document.getElementById("numbers").checked === false && document.getElementById("special").checked === false)//generates default password when none of the checkboxes have been checked
+       {
         generateDefault(key,"o1")
         generateDefault(key,"o2")
-    }
-    if (flags[0] === 1)//exclude uppercase
+       }
+    if (document.getElementById("uppercase").checked === true) //exclude uppercase
     {
         noUppercase(key,"o1")
         noUppercase(key,"o2")
     }
-    if (flags[1] === 1)//exclude lowercase
+    if (document.getElementById("lowercase").checked === true)//exclude lowercase
     {
         noLowercase(key,"o1")
         noLowercase(key,"o2")
     }
-    if (flags[2] === 1)//exclude numbers
+    if (document.getElementById("numbers").checked === true)//exclude numbers
     {
         noNumbers(key,"o1")
         noNumbers(key,"o2")
     }
-    if (flags[3] === 1)//exclude special characters
+    if (document.getElementById("special").checked === true)//exclude special characters
     {
         noSpecial(key,"o1")
         noSpecial(key,"o2")
     }
-    if (flags[0] === 1 && flags[2] === 1)//generate passwords excluding uppercase and numbers
+    if (document.getElementById("uppercase").checked === true && document.getElementById("numbers").checked === true)//generate passwords excluding uppercase and numbers
     {
         noUpperAndNumber(key,"o1")
         noUpperAndNumber(key,"o2")
     }
-    if (flags[1] === 1 && flags[2] === 1)//generate passwords excluding lowercase and numbers
+    if (document.getElementById("lowercase").checked === true && document.getElementById("numbers").checked === true)//generate passwords excluding lowercase and numbers
     {
         noLowerAndNumber(key,"o1")
         noLowerAndNumber(key,"o2")
     }
-    if (flags[2] === 1 && flags[3] === 1)//generate passwords excluding numbers and special characters
+    if (document.getElementById("numbers").checked === true && document.getElementById("special").checked === true)//generate passwords excluding numbers and special characters
     {
         noNumberAndSpecial(key,"o1")
         noNumberAndSpecial(key,"o2")
     }
-    if (flags[0] === 1 && flags[1] === 1)//generate passwords excluding uppercase and lowercase characters
+    if (document.getElementById("uppercase").checked === true && document.getElementById("lowercase").checked === true)//generate passwords excluding uppercase and lowercase characters
     {
         noUpperAndLower(key,"o1")
         noUpperAndLower(key,"o2")
     }
-    if (flags[0] === 1 && flags[3] === 1)//generate passwords excluding uppercase and special characters
+    if (document.getElementById("uppercase").checked === true && document.getElementById("special").checked === true)//generate passwords excluding uppercase and special characters
     {
         noUpperAndSpecial(key,"o1")
         noUpperAndSpecial(key,"o2")
     }
-    if (flags[1] === 1 && flags[3] === 1)//generate passwords excluding lowercase and special characters
+    if (document.getElementById("lowercase").checked === true && document.getElementById("special").checked === true)//generate passwords excluding lowercase and special characters
     {
         noLowerAndSpecial(key,"o1")
         noLowerAndSpecial(key,"o2")
-    }
-})
-
-document.getElementById("uppercase").addEventListener("click",function (){//monitors exclude uppercase checkbox
-    if (flags[0] === 0)
-    {
-        flags[0] = 1
-    }
-    else
-    {
-        flags[0] = 0
-    }
-})
-
-document.getElementById("lowercase").addEventListener("click",function (){//monitors exclude lowercase checkbox
-    if (flags[1] === 0)
-    {
-        flags[1] = 1
-    }
-    else
-    {
-        flags[1] = 0
-    }
-})
-
-document.getElementById("numbers").addEventListener("click",function (){//monitors exclude numbers checkbox
-    if (flags[2] === 0)
-    {
-        flags[2] = 1
-    }
-    else
-    {
-        flags[2] = 0
-    }
-})
-
-document.getElementById("special").addEventListener("click",function (){//monitors exclude special characters checkbox
-    if (flags[3] === 0)
-    {
-        flags[3] = 1
-    }
-    else
-    {
-        flags[3] = 0
     }
 })
 
@@ -324,7 +282,6 @@ function noSpecial(key, id){//generates password excluding special characters
     for (let i = 0; i < size; i++ ){
         if (i != b && i != c && i != a)
         {
-           
             do
             {
                 randomIndex = Math.floor(Math.random()*store.length)
